@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>MAIN</title>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="/">main</a></li>
+        <li><a id="navSub1" href="">sub1</a></li>
+        <li><a id="navSub2" href="">sub2</a></li>
+      </ul>
+    </nav>
+    <section>
+      <h1>MAIN</h1>
+      This is main page.
+    </section>
+    <script>
+    (function(){
+      document.getElementById('navSub1').addEventListener('click', function(e) {
+        e.preventDefault();
+        drawSection('/sub1.json');
+      });
+
+      document.getElementById('navSub2').addEventListener('click', function(e) {
+        e.preventDefault();
+        drawSection('/sub2.json');
+      });
+
+      function drawSection(url) {
+        ajaxGet(url, function(response) {
+          var data = JSON.parse(response);
+          document.querySelector('section').innerHTML =
+          '<h1>' + data.title +  '</h1>'
+          +data.content
+        });
+      }
+
+      function ajaxGet(url, callback) {
+        url = url || '';
+        callback = callback || function () { ; };
+        var xhr = new XMLHttpRequest();
+        xhr.open("get", url, true);
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        var that = this;
+        xhr.onload = function () {
+            callback.apply(that, [xhr.response]);
+        };
+        xhr.send(null);
+      }
+    })();
+    </script>
+  </body>
+</html>
