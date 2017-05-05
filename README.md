@@ -9,7 +9,12 @@
 - 정리
 
 ### 실습
--`npm install serve`
+- serve를 설치한다. `npm install -g serve` (https://www.npmjs.com/package/serve)
+- git clone https://github.com/voyagerwoo/simple-spa
+- 기존 웹서비스 예제 서버 실행 : `serve -p 3001 01_old`
+- Ajax 웹서비스 예제 서버 실행 : `serve -p 3002 02_ajax`
+- SPA 웹서비스 예제 서버 실행 : `serve -p 3003 03_spa`
+- http://localhost:3001, http://localhost:3002, http://localhost:3003 들어가서 확인해본다.
 
 ## 01 기존의 웹서비스
 기존의 웹서비스는 링크(앵커 `<a href="#">`)를 클릭하면 해당 페이지로 이동하게 된다. 정확히 이야기하면 앵커에 명시되어 있는 자원(일반적으로 html)을 서버에 요청하고 응답으로 받은 내용을 브라우저에 표현하게 된다. 이런 식으로 매 페이지마다 서버에 문서(html)을 요청하고 응답받아서 표현한다.
